@@ -61,6 +61,7 @@ How to replace calls before running the script ?
          window["routerForwardCall"]("filename-functioname-parametersTypeDividedByComma-parametersValueDividedByComma", "calleeFileName");
 
          An example:
+         
            window["routerForwardCall"]("file3-funct1-Number,String-7,hello", "calleeFileName");
 
          or if the function has no parameters:
