@@ -19,7 +19,7 @@ How the NodeJS script Works?
   
     node RouterCallsCreator.js [path-to-project-folder]
   
-  If the optional parameter is omitted, the script will default to processing the current folder.
+  If the optional parameter is omitted, the script will process files in ./ folder.
 
   The script performs the following steps:
   
