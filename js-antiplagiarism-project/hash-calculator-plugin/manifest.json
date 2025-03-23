@@ -1,0 +1,22 @@
+{
+  "manifest_version": 3,
+  "name": "JavaScript Hash Checker",
+  "version": "1.0",
+  "description": "Calcola e visualizza gli hash degli script JavaScript caricati nelle pagine.",
+  "permissions": [
+    "storage",
+    "webRequest",
+    "activeTab",
+	"scripting"
+  ],
+  "host_permissions": [
+    "<all_urls>"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": "icon.png"
+  }
+}

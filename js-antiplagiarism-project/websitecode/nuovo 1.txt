@@ -1,0 +1,183 @@
+Tenendo in considerazione che questo file verrà eseguito da browser , abbiamo tutto quello che ci serve per ricostruire la chiave per ogni call dove la callString è encrypted ed encoded in base64.
+
+const DEPENDENCY_MAPPING_BASE64 = "ewogICJDOlxcVXNlcnNcXEFsZXNzYW5kcm9cXERlc2t0b3BcXEphdmFzY3JpcHQgdGVzdFxcZmlsZTEuanMiOiB7CiAgICAicm91dGVyRGVwZW5kYW50IjogZmFsc2UsCiAgICAiZGVwZW5kZW5jaWVzIjoge30KICB9LAogICJDOlxcVXNlcnNcXEFsZXNzYW5kcm9cXERlc2t0b3BcXEphdmFzY3JpcHQgdGVzdFxcZmlsZTIuanMiOiB7CiAgICAicm91dGVyRGVwZW5kYW50IjogdHJ1ZSwKICAgICJkZXBlbmRlbmNpZXMiOiB7CiAgICAgICJDOlxcVXNlcnNcXEFsZXNzYW5kcm9cXERlc2t0b3BcXEphdmFzY3JpcHQgdGVzdFxcZmlsZTMuanMiOiB7CiAgICAgICAgInJvdXRlckRlcGVuZGFudCI6IGZhbHNlLAogICAgICAgICJkZXBlbmRlbmNpZXMiOiB7CiAgICAgICAgICAiQzpcXFVzZXJzXFxBbGVzc2FuZHJvXFxEZXNrdG9wXFxKYXZhc2NyaXB0IHRlc3RcXHRlc3RkZXBcXGZpbGU0LmpzIjogewogICAgICAgICAgICAicm91dGVyRGVwZW5kYW50IjogZmFsc2UsCiAgICAgICAgICAgICJkZXBlbmRlbmNpZXMiOiB7fQogICAgICAgICAgfQogICAgICAgIH0KICAgICAgfSwKICAgICAgIkM6XFxVc2Vyc1xcQWxlc3NhbmRyb1xcRGVza3RvcFxcSmF2YXNjcmlwdCB0ZXN0XFx0ZXN0ZGVwXFxmaWxlNC5qcyI6IHsKICAgICAgICAicm91dGVyRGVwZW5kYW50IjogZmFsc2UsCiAgICAgICAgImRlcGVuZGVuY2llcyI6IHt9CiAgICAgIH0KICAgIH0KICB9LAogICJDOlxcVXNlcnNcXEFsZXNzYW5kcm9cXERlc2t0b3BcXEphdmFzY3JpcHQgdGVzdFxcZmlsZTMuanMiOiB7CiAgICAicm91dGVyRGVwZW5kYW50IjogZmFsc2UsCiAgICAiZGVwZW5kZW5jaWVzIjogewogICAgICAiQzpcXFVzZXJzXFxBbGVzc2FuZHJvXFxEZXNrdG9wXFxKYXZhc2NyaXB0IHRlc3RcXHRlc3RkZXBcXGZpbGU0LmpzIjogewogICAgICAgICJyb3V0ZXJEZXBlbmRhbnQiOiBmYWxzZSwKICAgICAgICAiZGVwZW5kZW5jaWVzIjoge30KICAgICAgfQogICAgfQogIH0sCiAgIkM6XFxVc2Vyc1xcQWxlc3NhbmRyb1xcRGVza3RvcFxcSmF2YXNjcmlwdCB0ZXN0XFxoYXNoLWNhbGN1bGF0b3ItcGx1Z2luXFxiYWNrZ3JvdW5kLmpzIjogewogICAgInJvdXRlckRlcGVuZGFudCI6IGZhbHNlLAogICAgImRlcGVuZGVuY2llcyI6IHt9CiAgfSwKICAiQzpcXFVzZXJzXFxBbGVzc2FuZHJvXFxEZXNrdG9wXFxKYXZhc2NyaXB0IHRlc3RcXGhhc2gtY2FsY3VsYXRvci1wbHVnaW5cXGJhY2t1cFxcYmFja2dyb3VuZC5qcyI6IHsKICAgICJyb3V0ZXJEZXBlbmRhbnQiOiBmYWxzZSwKICAgICJkZXBlbmRlbmNpZXMiOiB7fQogIH0sCiAgIkM6XFxVc2Vyc1xcQWxlc3NhbmRyb1xcRGVza3RvcFxcSmF2YXNjcmlwdCB0ZXN0XFxoYXNoLWNhbGN1bGF0b3ItcGx1Z2luXFxiYWNrdXBcXHBvcHVwLmpzIjogewogICAgInJvdXRlckRlcGVuZGFudCI6IGZhbHNlLAogICAgImRlcGVuZGVuY2llcyI6IHt9CiAgfSwKICAiQzpcXFVzZXJzXFxBbGVzc2FuZHJvXFxEZXNrdG9wXFxKYXZhc2NyaXB0IHRlc3RcXGhhc2gtY2FsY3VsYXRvci1wbHVnaW5cXHBvcHVwLmpzIjogewogICAgInJvdXRlckRlcGVuZGFudCI6IGZhbHNlLAogICAgImRlcGVuZGVuY2llcyI6IHt9CiAgfSwKICAiQzpcXFVzZXJzXFxBbGVzc2FuZHJvXFxEZXNrdG9wXFxKYXZhc2NyaXB0IHRlc3RcXFJvdXRlci5qcyI6IHsKICAgICJyb3V0ZXJEZXBlbmRhbnQiOiBmYWxzZSwKICAgICJkZXBlbmRlbmNpZXMiOiB7CiAgICAgICJDOlxcVXNlcnNcXEFsZXNzYW5kcm9cXERlc2t0b3BcXEphdmFzY3JpcHQgdGVzdFxcZmlsZTMuanMiOiB7CiAgICAgICAgInJvdXRlckRlcGVuZGFudCI6IGZhbHNlLAogICAgICAgICJkZXBlbmRlbmNpZXMiOiB7CiAgICAgICAgICAiQzpcXFVzZXJzXFxBbGVzc2FuZHJvXFxEZXNrdG9wXFxKYXZhc2NyaXB0IHRlc3RcXHRlc3RkZXBcXGZpbGU0LmpzIjogewogICAgICAgICAgICAicm91dGVyRGVwZW5kYW50IjogZmFsc2UsCiAgICAgICAgICAgICJkZXBlbmRlbmNpZXMiOiB7fQogICAgICAgICAgfQogICAgICAgIH0KICAgICAgfQogICAgfQogIH0sCiAgIkM6XFxVc2Vyc1xcQWxlc3NhbmRyb1xcRGVza3RvcFxcSmF2YXNjcmlwdCB0ZXN0XFxSb3V0ZXJDYWxsc0NyZWF0aW9uLmpzIjogewogICAgInJvdXRlckRlcGVuZGFudCI6IGZhbHNlLAogICAgImRlcGVuZGVuY2llcyI6IHt9CiAgfSwKICAiQzpcXFVzZXJzXFxBbGVzc2FuZHJvXFxEZXNrdG9wXFxKYXZhc2NyaXB0IHRlc3RcXHRlc3RkZXBcXGZpbGU0LmpzIjogewogICAgInJvdXRlckRlcGVuZGFudCI6IGZhbHNlLAogICAgImRlcGVuZGVuY2llcyI6IHt9CiAgfQp9";
+const IVS_ORDERED_BASE64 = "ewogICJmaWxlMi5qcyI6IFsKICAgICJMeEZ3Wks1S3dyVWpXdDV4Q2NCRkxBPT0iLAogICAgIlp1OHZUYnZIWkRES2gwYmpENmFRZmc9PSIKICBdCn0=";
+/**
+ * Riceve una stringa criptata, la decripta, la interpreta come JSON per
+ * ottenere il nome della funzione da chiamare e i relativi parametri,
+ * e quindi richiama la funzione globale corrispondente.
+ *
+ * La "decryption" in questo esempio consiste nell'invertire la stringa.
+ *
+ * Il JSON atteso ha la seguente struttura:
+ * {
+ *   "functionName": "nomeFunzioneDaChiamare",
+ *   "params": [param1, param2, ...]
+ * }
+/**
+ * Parser per stringhe nel formato:
+ * "fileIdentifier-functionName-paramTypes-paramValues"
+ *
+ * Esempi:
+ * - "file3-funzioneDiFile3-null-null"
+ *      -> chiama window.funzioneDiFile3() senza parametri.
+ *
+ * - "file3-funzioneDiFile3-string,string,boolean-ciao,ciao,true"
+ *      -> chiama window.funzioneDiFile3("ciao", "ciao", true)
+ *
+ * I tipi supportati sono: "string", "number", "boolean", "object" e "null".
+ */
+function routerForwardCall(callString, callee) {
+  // Divide la stringa in 4 parti separate da "-"
+  const parts = callString.split("-");
+  if (parts.length !== 4) {
+    console.error("Formato della stringa non valido:", callString);
+    return;
+  }
+
+  const fileIdentifier = parts[0];   // ad es. "file3"
+  const functionName = parts[1];       // ad es. "funzioneDiFile3"
+  const paramTypesStr = parts[2];      // ad es. "string,string,boolean" oppure "null"
+  const paramValuesStr = parts[3];     // ad es. "ciao,ciao,true" oppure "null"
+
+  let params = [];
+
+  // Se entrambi i campi sono "null", significa che non ci sono parametri
+  if (paramTypesStr !== "null" && paramValuesStr !== "null") {
+    // Suddivide i tipi e i valori in array usando la virgola come separatore
+    const types = paramTypesStr.split(",");
+    const values = paramValuesStr.split(",");
+
+    if (types.length !== values.length) {
+      console.error("Numero di tipi e valori non corrispondente");
+      return;
+    }
+
+    // Converte ogni valore nel tipo corrispondente
+    params = types.map((type, index) => {
+      let value = values[index];
+      switch (type) {
+        case "string":
+          return value;
+        case "number":
+          return Number(value);
+        case "boolean":
+          return value.toLowerCase() === "true";
+        case "object":
+          try {
+            return JSON.parse(value);
+          } catch (error) {
+            console.error("Errore nel parsing del parametro di tipo object:", error);
+            return null;
+          }
+        case "null":
+          return null;
+        default:
+          console.warn("Tipo parametro non riconosciuto, trattato come stringa");
+          return value;
+      }
+    });
+  }
+
+  // Messaggio facoltativo: puoi usare fileIdentifier per controlli aggiuntivi
+  console.log("Chiamata proveniente da:", fileIdentifier);
+
+  // Verifica l'esistenza della funzione in window e la chiama con i parametri (se presenti)
+  if (typeof window[functionName] === 'function') {
+    window[functionName](...params);
+  } else {
+    console.error("La funzione " + functionName + " non esiste in window.");
+  }
+}
+
+
+Infatti abbiamo l'encoded string base64 del DEPENDENCY_TREE_BASE64, IVS_MAPPING_BASE64 e la stringa callee che ci permette di identificare quale ramo seguire per ricostruire la chiave.
+Gli hash dei file che trovi nei rami del DEPENDENCY_TREE_BASE64 li puoi recuperare dall'oggetto window.globalHashes che è costruito in questo modo, il ramo che dovrai seguire è dettato dalla stringa "calle", ovvero il secondo parametro del router. 
+
+window.globalHashes è un oggetto di questo tipo: {"file:///C:/Users/Alessandro/Desktop/Javascript%20test/Router.js":"c2def1442334f922c2d676a187f0cce35094b65ec4fe8e5ef916b152043522be","file:///C:/Users/Alessandro/Desktop/Javascript%20test/file1.js":"7bbe144a91271eba64ccf6a75bb4e0573f1d6fcc7480db388e99e5f93de1d261","file:///C:/Users/Alessandro/Desktop/Javascript%20test/file3.js":"0893149209cef8d5ee8c9c828e97e609bf50af36777149da1c002223c8afaff8","file:///C:/Users/Alessandro/Desktop/Javascript%20test/hash-calculator-plugin/popup.js":"5a6e501b6827691de36dd434fa6e58d185d8623d3a924f34b36340322e374b94"}
+
+DEPENDENCY_TREE_BASE64 è l'encode in string base64 di un oggetto di questo tipo: 
+
+{
+  "C:\\Users\\Alessandro\\Desktop\\Javascript test\\file1.js": {
+    "routerDependant": false,
+    "dependencies": {}
+  },
+  "C:\\Users\\Alessandro\\Desktop\\Javascript test\\file2.js": {
+    "routerDependant": true,
+    "dependencies": {
+      "C:\\Users\\Alessandro\\Desktop\\Javascript test\\file3.js": {
+        "routerDependant": false,
+        "dependencies": {
+          "C:\\Users\\Alessandro\\Desktop\\Javascript test\\testdep\\file4.js": {
+            "routerDependant": false,
+            "dependencies": {}
+          }
+        }
+      },
+      "C:\\Users\\Alessandro\\Desktop\\Javascript test\\testdep\\file4.js": {
+        "routerDependant": false,
+        "dependencies": {}
+      }
+    }
+  },
+  "C:\\Users\\Alessandro\\Desktop\\Javascript test\\file3.js": {
+    "routerDependant": false,
+    "dependencies": {
+      "C:\\Users\\Alessandro\\Desktop\\Javascript test\\testdep\\file4.js": {
+        "routerDependant": false,
+        "dependencies": {}
+      }
+    }
+  },
+  "C:\\Users\\Alessandro\\Desktop\\Javascript test\\hash-calculator-plugin\\background.js": {
+    "routerDependant": false,
+    "dependencies": {}
+  },
+  "C:\\Users\\Alessandro\\Desktop\\Javascript test\\hash-calculator-plugin\\backup\\background.js": {
+    "routerDependant": false,
+    "dependencies": {}
+  },
+  "C:\\Users\\Alessandro\\Desktop\\Javascript test\\hash-calculator-plugin\\backup\\popup.js": {
+    "routerDependant": false,
+    "dependencies": {}
+  },
+  "C:\\Users\\Alessandro\\Desktop\\Javascript test\\hash-calculator-plugin\\popup.js": {
+    "routerDependant": false,
+    "dependencies": {}
+  },
+  "C:\\Users\\Alessandro\\Desktop\\Javascript test\\Router.js": {
+    "routerDependant": false,
+    "dependencies": {
+      "C:\\Users\\Alessandro\\Desktop\\Javascript test\\file3.js": {
+        "routerDependant": false,
+        "dependencies": {
+          "C:\\Users\\Alessandro\\Desktop\\Javascript test\\testdep\\file4.js": {
+            "routerDependant": false,
+            "dependencies": {}
+          }
+        }
+      }
+    }
+  },
+  "C:\\Users\\Alessandro\\Desktop\\Javascript test\\RouterCallsCreation.js": {
+    "routerDependant": false,
+    "dependencies": {}
+  },
+  "C:\\Users\\Alessandro\\Desktop\\Javascript test\\testdep\\file4.js": {
+    "routerDependant": false,
+    "dependencies": {}
+  }
+}
+
+e IVS_MAPPING_BASE64 è un oggetto di questo tipo: 
+
+{
+  "file2.js": {
+    "9CsFINjIIE5xhDzWFeR+NfkY9WsQ2XdO9GZ20KZ7M2c=": "a2Hl+53oSJ9tXC0gjzbzlg==",
+    "qZGZRno4w2kq3wf915RnIZxV/8reF4VlnegdJMDJP0g=": "kaJ7hJxHal0QJ9U5sQk8XA=="
+  }
+}
+
+
+
