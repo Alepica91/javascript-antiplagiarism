@@ -14,5 +14,5 @@ window.addEventListener("message", (event) => {
 });
 
 function file1funct(){
-	console.log("Finally fi1");
+	console.log("Finally file1");
 }
