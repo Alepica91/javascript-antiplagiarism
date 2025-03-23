@@ -4,6 +4,15 @@ It is essentially composed of a browser extension (hash-calculator-plugin), a sc
 
 The purpose of the extension is to compute the hashes of the JavaScript files loaded by the web page. Installing the plugin is essential in order to use this approach.
 
+How to install the extension?
+
+    1) Open Google Chrome and navigate to the Extensions page by entering "chrome://extensions/" in the address bar.
+    2) Enable Developer Mode by toggling the switch in the top-right corner.
+    3) Click the "Load unpacked" button.
+    4) In the file dialog, navigate to the folder (hash-calculator-plugin) that contains your unpacked extension files.
+    5) Select the folder and click "Open".
+    6) Your extension will be installed and appear on the Extensions page.
+
 How the NodeJS script Works?
 
   To run the script, open your terminal, navigate to the directory containing the script, and execute:
@@ -79,4 +88,13 @@ How to replace calls before running the script ?
   1) Import Router.js in your project (import it in the html).
   2) Replace function calls you want to protect in your files .js with equivalent routerForwardCall.
   3) Run the NodeJS script RouterCallsCreator.js [projectFolderPath]
+  4) Install the extension in you browser.
+
+
+An example project is already included. In the "websitecode" folder you will find a sample web application with the function calls to be protected replaced accordingly, along with a corresponding "recompiled" folder containing the application recompiled by the Node.js script.
+
+To test the code, simply navigate to the "recompiled" folder and open main.html in your browser.
+
+
+
       
